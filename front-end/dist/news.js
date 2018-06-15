@@ -415,7 +415,7 @@ eval("// shim for using process in browser\nvar process = module.exports = {};\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _messages = __webpack_require__(/*! ./messages */ \"./src/messages.js\");\n\nvar _axios = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n\nvar _axios2 = _interopRequireDefault(_axios);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar news = _axios2.default.get('http://127.0.0.1:8080/comments').then(function (response) {\n    console.log(response);\n});\n\nconsole.log('App.js Loaded');\nconsole.log(_messages.messages);\n\n//# sourceURL=webpack:///./src/app.js?");
+eval("\n\nvar _messages = __webpack_require__(/*! ./messages */ \"./src/messages.js\");\n\nvar _axios = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n\nvar _axios2 = _interopRequireDefault(_axios);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar news = _axios2.default.get('http://127.0.0.1:8080/comments').then(function (response) {\n    return response.data.articles;\n});\n\nnews.then(function (result) {\n    result.forEach(function (article) {\n        var nono = document.getElementById('nono');\n        nono.innerHTML += '<h1>' + article.title + '</h1>';\n    });\n});\n\nconsole.log('App.js Loaded');\nconsole.log(_messages.messages);\nconsole.log(news);\n\n//# sourceURL=webpack:///./src/app.js?");
 
 /***/ }),
 
